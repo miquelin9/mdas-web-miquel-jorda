@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @QuarkusTest
-public class AddFavouritePokemonToUserTest {
+public class AddFavouritePokemonUseCaseToUserTest {
     @Inject
     AddFavouritePokemonToUser tested;
 

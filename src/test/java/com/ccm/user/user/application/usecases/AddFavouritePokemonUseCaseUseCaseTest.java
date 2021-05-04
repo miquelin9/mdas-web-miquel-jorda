@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 
 @QuarkusTest
-public class AddFavouritePokemonUseCaseTest {
+public class AddFavouritePokemonUseCaseUseCaseTest {
     @Inject
     AddFavouritePokemonUseCase tested;
 

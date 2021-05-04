@@ -1,10 +1,10 @@
-package com.ccm.pokemon.pokemon.infrastructure.repositories;
+package com.ccm.pokemon.pokemon.infrastructure.api;
 
 import com.ccm.pokemon.pokemon.domain.aggregate.Pokemon;
 import com.ccm.pokemon.pokemon.domain.exceptions.NetworkConnectionException;
 import com.ccm.pokemon.pokemon.domain.exceptions.TimeoutException;
 import com.ccm.pokemon.pokemon.domain.exceptions.UnknownException;
-import com.ccm.pokemon.pokemon.domain.interfaces.PokemonRepository;
+import com.ccm.pokemon.pokemon.domain.interfaces.PokemonRetrieverClient;
 import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonId;
 import com.ccm.pokemon.pokemon.infrastructure.parsers.JsonToPokemonParser;
 import com.ccm.pokemon.pokemon.domain.exceptions.PokemonNotFoundException;
@@ -26,8 +26,8 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 @ApplicationScoped
-@Named("HttpPokemon")
-public class HttpPokemonRepository implements PokemonRepository {
+@Named("API")
+public class PokemonRetrieverApiClient implements PokemonRetrieverClient {
 
     private static final String HOST_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
     private static final double TIMEOUT = 3;

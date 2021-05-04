@@ -4,7 +4,7 @@ import com.ccm.pokemon.pokemon.domain.aggregate.Pokemon;
 import com.ccm.pokemon.pokemon.domain.exceptions.NetworkConnectionException;
 import com.ccm.pokemon.pokemon.domain.exceptions.TimeoutException;
 import com.ccm.pokemon.pokemon.domain.exceptions.UnknownException;
-import com.ccm.pokemon.pokemon.domain.interfaces.PokemonRepository;
+import com.ccm.pokemon.pokemon.domain.interfaces.PokemonRetrieverClient;
 import com.ccm.pokemon.pokemon.domain.valueObjects.Name;
 import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonId;
 import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonType;
@@ -18,9 +18,9 @@ import javax.inject.Inject;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @QuarkusTest
-public class HttpPokemonRepositoryTest {
+public class PokemonRetrieverApiClientTest {
     @Inject
-    PokemonRepository pokemonRepository;
+    PokemonRetrieverClient pokemonRetrieverClient;
 
     @Test
     public void shouldFindPokemon() throws PokemonNotFoundException, TimeoutException, UnknownException, NetworkConnectionException {
@@ -32,7 +32,7 @@ public class HttpPokemonRepositoryTest {
         pokemon.addPokemonType(new PokemonType("poison"));
 
         //When
-        Pokemon retrievedPokemon = pokemonRepository.find(pokemonId);
+        Pokemon retrievedPokemon = pokemonRetrieverClient.find(pokemonId);
 
         //Then
         Assertions.assertEquals(pokemon, retrievedPokemon);
@@ -47,7 +47,7 @@ public class HttpPokemonRepositoryTest {
         assertThrows(
             com.ccm.pokemon.pokemon.domain.exceptions.PokemonNotFoundException.class,
             () -> {
-                pokemonRepository.find(pokemonId);
+                pokemonRetrieverClient.find(pokemonId);
             }
         );
     }

@@ -1,9 +1,6 @@
 package com.ccm.pokemon.pokemon.domain.aggregate;
 
-import com.ccm.pokemon.pokemon.domain.valueObjects.Name;
-import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonId;
-import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonType;
-import com.ccm.pokemon.pokemon.domain.valueObjects.PokemonTypes;
+import com.ccm.pokemon.pokemon.domain.valueObjects.*;
 
 import java.util.Objects;
 
@@ -13,6 +10,7 @@ public class Pokemon {
         this.name = name;
         this.pokemonId = pokemonId;
         this.pokemonTypes = new PokemonTypes();
+        this.favouriteCounter = new FavouriteCounter(0);
     }
 
     public Name getName() {
@@ -27,9 +25,14 @@ public class Pokemon {
         return pokemonTypes;
     }
 
+    public FavouriteCounter getFavouriteCounter() { return favouriteCounter; }
+
     private Name name;
     private PokemonId pokemonId;
     private PokemonTypes pokemonTypes;
+    private FavouriteCounter favouriteCounter;
+
+    public void addFavouriteCounter() { this.favouriteCounter.addFavouriteCounter(); }
 
     public void addPokemonType(PokemonType pokemonType) {
         this.pokemonTypes.addType(pokemonType);
