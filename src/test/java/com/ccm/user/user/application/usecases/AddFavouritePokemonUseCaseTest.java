@@ -14,6 +14,8 @@ import org.mockito.Mockito;
 
 import javax.inject.Inject;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 
@@ -23,7 +25,7 @@ public class AddFavouritePokemonUseCaseTest {
     AddFavouritePokemonUseCase tested;
 
     @Test
-    public void verify_addFavouritePokemon_CallsToMethods() throws UserNotFoundException, FavouritePokemonAlreadyExistsException {
+    public void verify_addFavouritePokemon_CallsToMethods() throws UserNotFoundException, FavouritePokemonAlreadyExistsException, IOException {
         FavouritePokemonId pokemonId = new FavouritePokemonId(123);
         UserId userId = new UserId(1);
         UserFavouritePokemonDTO userFavouritePokemonDTO = new UserFavouritePokemonDTO(

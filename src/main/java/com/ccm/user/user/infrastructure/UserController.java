@@ -23,8 +23,8 @@ public class UserController {
     @Inject
     AddUserUseCase addUserUseCase;
 
-    @GET
-    @Path("/addFavouritePokemon")
+    @POST
+    @Path("/favouritepokemon/add")
     public Response addFavouritePokemon(@HeaderParam ("id") int userId, @QueryParam("id") int pokemonId) {
         try {
             addFavouritePokemonUseCase.addFavouritePokemon(new UserFavouritePokemonDTO(
@@ -40,8 +40,8 @@ public class UserController {
         }
     }
 
-    @GET
-    @Path("/addUser")
+    @POST
+    @Path("/add")
     public Response addUser(@QueryParam("name") String name, @QueryParam("userId") int userId) {
         try {
             addUserUseCase.createUser(new UserDTO(name, userId));

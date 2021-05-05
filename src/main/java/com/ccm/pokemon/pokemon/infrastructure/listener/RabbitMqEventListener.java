@@ -10,6 +10,7 @@ import com.ccm.pokemon.pokemon.infrastructure.parsers.JsonToPokemonDTOParser;
 import com.rabbitmq.client.*;
 import io.quarkus.runtime.Startup;
 import io.quarkus.runtime.StartupEvent;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -27,8 +28,13 @@ public class RabbitMqEventListener extends BaseRabbitMqListener {
     private final Logger LOGGER = Logger.getLogger(RabbitMqEventListener.class);
 
     private final static String CHARSET_NAME = "UTF-8";
-    private final static String RABBIT_QUEUE = "pokemon-in";
-    private final static String RABBIT_HOST = "localhost";
+
+    @ConfigProperty(name = "rabbit.queue")
+    String RABBIT_QUEUE = "pokemon-in";
+//    private final static String RABBIT_QUEUE = "pokemon-in";
+    @ConfigProperty(name = "rabbit.host")
+    String RABBIT_HOST = "localhost";
+//    private final static String RABBIT_HOST = "localhost";
 
     @Inject
     JsonToPokemonDTOParser jsonToPokemonDTOParser;

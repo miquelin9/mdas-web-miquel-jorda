@@ -14,8 +14,9 @@ public abstract class BaseRabbitMqListener {
     protected Connection connection;
     protected Channel channel;
 
+
     protected void configureListener(String queue, String host) throws IOException, TimeoutException {
-        LOGGER.info("RabbitMqListener about to be configured");
+        LOGGER.info("RabbitMqEventListener is about to be configured");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(host);
         connection = factory.newConnection();
