@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
 
 public abstract class BaseRabbitMqListener {
 
-    private final Logger LOGGER = Logger.getLogger(RabbitMqEventListener.class);
+    private final Logger LOGGER = Logger.getLogger(BaseRabbitMqListener.class);
 
     protected Connection connection;
     protected Channel channel;

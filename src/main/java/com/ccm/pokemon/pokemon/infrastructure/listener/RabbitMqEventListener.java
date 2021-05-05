@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Objects;
 
 @Startup
 @Singleton
@@ -49,8 +50,14 @@ public class RabbitMqEventListener extends BaseRabbitMqListener {
             JSONObject obj = (JSONObject) jsonToPokemonDTOParser.jsonParser.parse(message);
             PokemonDto pokemonDto = jsonToPokemonDTOParser.jsonToPokemonDto(obj);
             favouritePokemonAddedNotifierUseCase.addFavouritePokemonCounter(pokemonDto);
-        } catch (ParseException | PokemonNotFoundException | TimeoutException | NetworkConnectionException e) {
+        } catch (PokemonNotFoundException | TimeoutException | NetworkConnectionException |
+                ClassCastException e) {
             LOGGER.error(e.getMessage());
+        } catch (ParseException e) {
+            if (Objects.isNull(e.getMessage()))
+                LOGGER.error("Parsing exception: could not parse message and returned null");
+            else
+                LOGGER.error(e.getMessage());
         } catch (UnknownException e) {
             LOGGER.error("Unknown exception: " + e.getMessage());
         }

@@ -18,7 +18,7 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class FavouritePokemonAddedNotifierUseCase {
 
-    private final Logger LOGGER = Logger.getLogger(RabbitMqEventListener.class);
+    private final Logger LOGGER = Logger.getLogger(FavouritePokemonAddedNotifierUseCase.class);
 
     @Inject
     PokemonFinder pokemonFinder;
